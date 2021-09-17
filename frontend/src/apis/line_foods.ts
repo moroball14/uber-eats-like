@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { lineFoods, lineFoodsReplace } from '../urls/index'
 
-export const postLineFoods = async(params) => {
+export const postLineFoods = async (params: any) => {
   return await axios.post(lineFoods,
     {
       food_id: params.foodId,
@@ -14,7 +14,7 @@ export const postLineFoods = async(params) => {
   .catch((e) => { throw e; })
 };
 
-export const replaceLineFoods = async(params) => {
+export const replaceLineFoods = async (params: any) => {
   return await axios.put(lineFoodsReplace,
     {
       food_id: params.foodId,

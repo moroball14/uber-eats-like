@@ -10,7 +10,7 @@ export const foodsActionTyps = {
   FETCH_SUCCESS: 'FETCH_SUCCESS'
 }
 
-export const foodsReducer = (state, action) => {
+export const foodsReducer = (state: any, action: any) => {
   switch (action.type) {
     case foodsActionTyps.FETCHING:
       return {

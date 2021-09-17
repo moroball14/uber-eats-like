@@ -1,9 +1,13 @@
 import React, { Fragment, useEffect, useReducer } from 'react';
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'styl... Remove this comment to see the full error message
 import styled from 'styled-components';
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Link } from "react-router-dom";
 
 // components
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../components/OrderDetailItem' was resolve... Remove this comment to see the full error message
 import { OrderDetailItem } from '../components/OrderDetailItem';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../components/Buttons/OrderButton' was res... Remove this comment to see the full error message
 import { OrderButton } from '../components/Buttons/OrderButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -19,6 +23,7 @@ import {
 } from '../reducers/lineFoods';
 
 // images
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../images/logo.png' or its cor... Remove this comment to see the full error message
 import MainLogo from '../images/logo.png';
 
 // constants
@@ -82,21 +87,30 @@ export const Orders = () => {
   };
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Fragment>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <HeaderWrapper>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Link to="/restaurants">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MainLogoImage src={MainLogo} alt="main logo" />
         </Link>
       </HeaderWrapper>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <OrderListWrapper>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <div>
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <OrderItemWrapper>
               {
                 // APIローディング中はくるくる回るローディングコンポーネントを表示
                 state.fetchState === REQUEST_STATE.LOADING ?
+                  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                   <CircularProgress />
                 :
                   state.lineFoodsSummary &&
+                    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                     <OrderDetailItem
                       restaurantFee={state.lineFoodsSummary.restaurant.fee}
                       restaurantName={state.lineFoodsSummary.restaurant.name}
@@ -107,9 +121,11 @@ export const Orders = () => {
                     />
               }
             </OrderItemWrapper>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <div>
             {
               state.fetchState === REQUEST_STATE.OK && state.lineFoodsSummary &&
+                // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                 <OrderButton
                   onClick={() => postLineFoods()}
                   disabled={state.postState === REQUEST_STATE.LOADING || state.postState === REQUEST_STATE.OK}
@@ -119,6 +135,7 @@ export const Orders = () => {
             }
             {
               state.fetchState === REQUEST_STATE.OK && !(state.lineFoodsSummary) &&
+                // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                 <p>
                   注文予定の商品はありません。
                 </p>

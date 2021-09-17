@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { orders } from '../urls/index'
 
-export const postOrder = async(params) => {
+export const postOrder = async (params: any) => {
   return await axios.post(orders,
     {
       line_food_ids: params.line_food_ids

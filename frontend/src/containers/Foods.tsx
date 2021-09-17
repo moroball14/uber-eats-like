@@ -1,13 +1,18 @@
 import React, { Fragment, useEffect, useReducer, useState } from "react";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'styl... Remove this comment to see the full error message
 import styled from "styled-components";
 import { COLORS } from "../style_constants";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useHistory, Link } from "react-router-dom";
 
 // components
 import { LocalMallIcon } from "../components/Icons";
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../components/FoodWrapper' was resolved to... Remove this comment to see the full error message
 import { FoodWrapper } from "../components/FoodWrapper";
 import Skeleton from "@material-ui/lab/Skeleton";
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../components/FoodOrderDialog' was resolve... Remove this comment to see the full error message
 import { FoodOrderDialog } from "../components/FoodOrderDialog";
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../components/NewOrderConfirmDialog' was r... Remove this comment to see the full error message
 import { NewOrderConfirmDialog } from "../components/NewOrderConfirmDialog";
 
 // reducers
@@ -22,7 +27,9 @@ import { fetchFoods } from "../apis/foods";
 import { postLineFoods, replaceLineFoods } from "../apis/line_foods";
 
 // images
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../images/logo.png' or its cor... Remove this comment to see the full error message
 import MainLogo from "../images/logo.png";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../images/food-image.jpg' or i... Remove this comment to see the full error message
 import FoodImage from "../images/food-image.jpg";
 
 // constants
@@ -63,7 +70,9 @@ const ItemWrapper = styled.div`
 //   console.log('登録ボタンが押された！')
 // }
 
-export const Foods = ({ match }) => {
+export const Foods = ({
+  match
+}: any) => {
   const history = useHistory();
   const [foodsState, dispatch] = useReducer(foodsReducer, foodsInitialState);
   const initialState = {
@@ -78,6 +87,7 @@ export const Foods = ({ match }) => {
 
   const submitOrder = () => {
     postLineFoods({
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       foodId: state.selectedFood.id,
       count: state.selectedFoodCount,
     })
@@ -99,6 +109,7 @@ export const Foods = ({ match }) => {
 
   const replaceOrder = () => {
     replaceLineFoods({
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       foodId: state.selectedFood.id,
       count: state.selectedFoodCount,
     }).then(() => history.push("/orders"));
@@ -117,45 +128,57 @@ export const Foods = ({ match }) => {
   }, [match.params.restaurantsId]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Fragment>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <HeaderWrapper>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Link to="/restaurants">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MainLogoImage src={MainLogo} alt="main logo" />
         </Link>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <BagIconWrapper>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Link to="/orders">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <ColoredBagIcon fontSize="large" />
           </Link>
         </BagIconWrapper>
       </HeaderWrapper>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FoodsList>
         {foodsState.fetchState === REQUEST_STATE.LOADING ? (
+          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Fragment>
+            {/* @ts-expect-error ts-migrate(2569) FIXME: Type 'IterableIterator<number>' is not an array ty... Remove this comment to see the full error message */}
             {[...Array(12).keys()].map((i) => (
+              // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
               <ItemWrapper key={i}>
+                {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                 <Skeleton key={i} variant="rect" width={450} height={180} />
               </ItemWrapper>
             ))}
           </Fragment>
         ) : (
-          foodsState.foodsList.map((food) => (
-            <ItemWrapper key={food.id}>
-              <FoodWrapper
-                food={food}
-                onClickFoodWrapper={(food) =>
-                  setState({
-                    ...state,
-                    isOpenOrderDialog: true,
-                    selectedFood: food,
-                  })
-                }
-                imageUrl={FoodImage}
-              />
-            </ItemWrapper>
-          ))
+          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+          foodsState.foodsList.map((food: any) => <ItemWrapper key={food.id}>
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+            <FoodWrapper
+              food={food}
+              onClickFoodWrapper={(food: any) => setState({
+                ...state,
+                isOpenOrderDialog: true,
+                selectedFood: food,
+              })
+              }
+              imageUrl={FoodImage}
+            />
+          </ItemWrapper>)
         )}
       </FoodsList>
       {state.isOpenOrderDialog && (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <FoodOrderDialog
           isOpen={state.isOpenOrderDialog}
           food={state.selectedFood}
@@ -186,6 +209,7 @@ export const Foods = ({ match }) => {
         />
       )}
       {state.isOpenNewOrderDialog && (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <NewOrderConfirmDialog
           isOpen={state.isOpenNewOrderDialog}
           onClose={() => setState({ ...state, isOpenNewOrderDialog: false })}
