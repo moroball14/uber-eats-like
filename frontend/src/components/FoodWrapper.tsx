@@ -1,11 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 // components
-import { SubText } from './StyledText';
+import { SubText } from "./StyledText";
 
 // constants
-import { COLORS } from '../style_constants';
+import { COLORS } from "../style_constants";
+import { Food } from "../types/food";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,11 +26,11 @@ const FoodDetail = styled.div`
 
 const DescriptionWrapper = styled.div`
   height: 75px;
-`
+`;
 
 const PriceWrapper = styled.div`
   margin-top: 16px;
-`
+`;
 
 const FoodImageNode = styled.img`
   width: 250px;
@@ -39,19 +40,19 @@ export const FoodWrapper = ({
   food,
   onClickFoodWrapper,
   imageUrl,
+}: {
+  food: Food;
+  onClickFoodWrapper: (food: Food) => void;
+  imageUrl: string;
 }) => (
   <Wrapper onClick={() => onClickFoodWrapper(food)}>
     <FoodDetail>
       {food.name}
       <DescriptionWrapper>
-        <SubText>
-          {food.description}
-        </SubText>
+        <SubText>{food.description}</SubText>
       </DescriptionWrapper>
-      <PriceWrapper>
-        ¥{food.price}
-      </PriceWrapper>
+      <PriceWrapper>¥{food.price}</PriceWrapper>
     </FoodDetail>
     <FoodImageNode src={imageUrl} />
   </Wrapper>
-)
+);

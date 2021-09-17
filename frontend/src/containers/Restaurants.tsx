@@ -1,27 +1,27 @@
-import React, { Fragment, useReducer, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { Fragment, useReducer, useEffect } from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 // components
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from "@material-ui/lab/Skeleton";
 
 // apis
-import { fetchRestaurants } from '../apis/restaurants';
+import { fetchRestaurants } from "../apis/restaurants";
 
 // reducers
 import {
   initialState,
   restaurantsActionTyps,
   restaurantsReducer,
-} from '../reducers/restaurants';
+} from "../reducers/restaurants";
 
 // constants
-import { REQUEST_STATE } from '../constants';
+import { REQUEST_STATE } from "../constants";
 
 // images
-import MainLogo from '../images/logo.png';
-import MainCoverImage from '../images/main-cover-image.png';
-import RestaurantImage from '../images/restaurant-image.jpg';
+import MainLogo from "../images/logo.png";
+import MainCoverImage from "../images/main-cover-image.png";
+import RestaurantImage from "../images/restaurant-image.jpg";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const HeaderWrapper = styled.div`
 
 const MainLogoImage = styled.img`
   height: 90px;
-`
+`;
 
 const MainCoverImageWrapper = styled.div`
   text-align: center;
@@ -72,16 +72,15 @@ export const Restaurants = () => {
 
   useEffect(() => {
     dispatch({ type: restaurantsActionTyps.FETCHING });
-    fetchRestaurants()
-    .then((data) =>
+    fetchRestaurants().then((data) =>
       dispatch({
         type: restaurantsActionTyps.FETCH_SUCCESS,
         payload: {
-          restaurants: data.restaurants
-        }
+          restaurants: data.restaurants,
+        },
       })
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <Fragment>
@@ -92,25 +91,28 @@ export const Restaurants = () => {
         <MainCover src={MainCoverImage} alt="main cover" />
       </MainCoverImageWrapper>
       <RestaurantsContentsList>
-        {
-          state.fetchState === REQUEST_STATE.LOADING ?
-            <Fragment>
-              <Skeleton variant="rect" width={450} height={300} />
-              <Skeleton variant="rect" width={450} height={300} />
-              <Skeleton variant="rect" width={450} height={300} />
-            </Fragment>
-          :
-            state.restaurantsList.map((item, index) =>
-              <Link to={`/restaurants/${item.id}/foods`} key={index} style={{ textDecoration: 'none' }}>
-                <RestaurantsContentWrapper>
-                  <RestaurantsImageNode src={RestaurantImage} />
-                  <MainText>{item.name}</MainText>
-                  <SubText>{`配送料：${item.fee}円 ${item.time_required}分`}</SubText>
-                </RestaurantsContentWrapper>
-              </Link>
-            )
-        }
+        {state.fetchState === REQUEST_STATE.LOADING ? (
+          <Fragment>
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+          </Fragment>
+        ) : (
+          state.restaurantsList.map((item: any, index: any) => (
+            <Link
+              to={`/restaurants/${item.id}/foods`}
+              key={index}
+              style={{ textDecoration: "none" }}
+            >
+              <RestaurantsContentWrapper>
+                <RestaurantsImageNode src={RestaurantImage} />
+                <MainText>{item.name}</MainText>
+                <SubText>{`配送料：${item.fee}円 ${item.time_required}分`}</SubText>
+              </RestaurantsContentWrapper>
+            </Link>
+          ))
+        )}
       </RestaurantsContentsList>
     </Fragment>
-  )
-}
+  );
+};

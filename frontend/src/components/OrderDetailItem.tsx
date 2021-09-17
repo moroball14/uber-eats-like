@@ -1,12 +1,10 @@
-import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-
-// componens
-import { LocalMallIcon, QueryBuilderIcon } from './Icons';
-
+import styled from "styled-components";
 // constants
-import { FONT_SIZE } from '../style_constants';
+import { FONT_SIZE } from "../style_constants";
+// components
+import { LocalMallIcon, QueryBuilderIcon } from "./Icons";
 
 const LineWrapper = styled.div`
   display: flex;
@@ -25,49 +23,38 @@ export const OrderDetailItem = ({
   timeRequired,
   foodCount,
   price,
+}: {
+  restaurantId: string;
+  restaurantName: string;
+  restaurantFee: number;
+  timeRequired: number;
+  foodCount: number;
+  price: number;
 }) => (
   <Fragment>
     <LineWrapper>
       <LocalMallIcon />
-      <Link to={`/restaurants/${restaurantId}/foods`}>
-        {restaurantName}
-      </Link>
+      <Link to={`/restaurants/${restaurantId}/foods`}>{restaurantName}</Link>
     </LineWrapper>
     <LineWrapper>
       <QueryBuilderIcon />
       {timeRequired}分で到着予定
     </LineWrapper>
     <LineWrapper>
-      <p>
-        商品数
-      </p>
-      <p>
-        {foodCount}
-      </p>
+      <p>商品数</p>
+      <p>{foodCount}</p>
     </LineWrapper>
     <LineWrapper>
-      <p>
-        商品数:{foodCount}
-      </p>
-      <p>
-        ¥ {price}
-      </p>
+      <p>商品数:{foodCount}</p>
+      <p>¥ {price}</p>
     </LineWrapper>
     <LineWrapper>
-      <p>
-        配送料
-      </p>
-      <p>
-        ¥ {restaurantFee}
-      </p>
+      <p>配送料</p>
+      <p>¥ {restaurantFee}</p>
     </LineWrapper>
     <LineWrapper>
-      <AmountText>
-        合計
-      </AmountText>
-      <AmountText>
-        ¥ {price + restaurantFee}
-      </AmountText>
+      <AmountText>合計</AmountText>
+      <AmountText>¥ {price + restaurantFee}</AmountText>
     </LineWrapper>
   </Fragment>
 );

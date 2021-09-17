@@ -68,3 +68,67 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### js -> ts 移行
+
+- ts-migrate のインストール、実行
+
+```
+npm install --save-dev ts-migrate
+npx -p ts-migrate -c "ts-migrate-full ."
+```
+
+- 必要な@types をインストール
+
+- `tsconfig.json` を以下の設定で作成
+  https://typescript-jp.gitbook.io/deep-dive/browser#purojekutono
+  ①
+
+```
+@ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+```
+
+を消せるようになる。
+
+②
+
+```
+Type 'IterableIterator<number>' is not an array type or a string type. Use compiler option '--downlevelIteration' to allow iterating of iterators.
+```
+
+は消せない。
+tsconfig.json に
+`"downlevelIteration": true` を追加
+https://stackoverflow.com/questions/49218765/typescript-and-iterator-type-iterableiteratort-is-not-an-array-type/49221814
+
+③
+
+```
+Cannot find module '../images/logo.png' or its corresponding type declarations
+```
+
+こういうエラーも出てきた
+https://github.com/parcel-bundler/parcel/issues/1445#issuecomment-392339363
+
+を参考に
+
+```
+touch src/global.d.ts
+```
+
+```src/global.d.ts
+declare module "*.png";
+declare module "*.jpg";
+```
+
+で解決
+
+④
+App.test.js で `Parsing error: '>' expected.` なエラーが出ていた
+App.test.tsx にして
+
+```
+import React from "react";
+```
+
+を追記して解消

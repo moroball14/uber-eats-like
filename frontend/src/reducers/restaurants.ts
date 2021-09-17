@@ -2,25 +2,25 @@ import { REQUEST_STATE } from '../constants';
 
 export const initialState = {
   fetchState: REQUEST_STATE.INITIAL,
-  foodsList: [],
+  restaurantsList: [],
 };
 
-export const foodsActionTyps = {
+export const restaurantsActionTyps = {
   FETCHING: 'FETCHING',
   FETCH_SUCCESS: 'FETCH_SUCCESS'
 }
 
-export const foodsReducer = (state, action) => {
+export const restaurantsReducer = (state: any, action: any) => {
   switch (action.type) {
-    case foodsActionTyps.FETCHING:
+    case restaurantsActionTyps.FETCHING:
       return {
         ...state,
         fetchState: REQUEST_STATE.LOADING,
       };
-    case foodsActionTyps.FETCH_SUCCESS:
+    case restaurantsActionTyps.FETCH_SUCCESS:
       return {
         fetchState: REQUEST_STATE.OK,
-        foodsList: action.payload.foods,
+        restaurantsList: action.payload.restaurants,
       };
     default:
       throw new Error();

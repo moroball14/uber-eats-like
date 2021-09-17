@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { orders } from '../urls/index'
 
-export const postOrder = async(params) => {
+interface IOrder {
+  line_food_ids: string[]
+}
+
+export const postOrder = async (params: IOrder) => {
   return await axios.post(orders,
     {
       line_food_ids: params.line_food_ids
