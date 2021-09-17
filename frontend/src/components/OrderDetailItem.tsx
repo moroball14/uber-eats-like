@@ -1,14 +1,10 @@
-import React, { Fragment } from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'styl... Remove this comment to see the full error message
-import styled from 'styled-components';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-
-// componens
-import { LocalMallIcon, QueryBuilderIcon } from './Icons';
-
+import styled from "styled-components";
 // constants
-import { FONT_SIZE } from '../style_constants';
+import { FONT_SIZE } from "../style_constants";
+// components
+import { LocalMallIcon, QueryBuilderIcon } from "./Icons";
 
 const LineWrapper = styled.div`
   display: flex;
@@ -26,68 +22,39 @@ export const OrderDetailItem = ({
   restaurantFee,
   timeRequired,
   foodCount,
-  price
-}: any) => (
-  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+  price,
+}: {
+  restaurantId: string;
+  restaurantName: string;
+  restaurantFee: number;
+  timeRequired: number;
+  foodCount: number;
+  price: number;
+}) => (
   <Fragment>
-    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <LineWrapper>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <LocalMallIcon />
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <Link to={`/restaurants/${restaurantId}/foods`}>
-        {restaurantName}
-      </Link>
+      <Link to={`/restaurants/${restaurantId}/foods`}>{restaurantName}</Link>
     </LineWrapper>
-    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <LineWrapper>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <QueryBuilderIcon />
       {timeRequired}分で到着予定
     </LineWrapper>
-    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <LineWrapper>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <p>
-        商品数
-      </p>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <p>
-        {foodCount}
-      </p>
+      <p>商品数</p>
+      <p>{foodCount}</p>
     </LineWrapper>
-    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <LineWrapper>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <p>
-        商品数:{foodCount}
-      </p>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <p>
-        ¥ {price}
-      </p>
+      <p>商品数:{foodCount}</p>
+      <p>¥ {price}</p>
     </LineWrapper>
-    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <LineWrapper>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <p>
-        配送料
-      </p>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <p>
-        ¥ {restaurantFee}
-      </p>
+      <p>配送料</p>
+      <p>¥ {restaurantFee}</p>
     </LineWrapper>
-    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <LineWrapper>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <AmountText>
-        合計
-      </AmountText>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-      <AmountText>
-        ¥ {price + restaurantFee}
-      </AmountText>
+      <AmountText>合計</AmountText>
+      <AmountText>¥ {price + restaurantFee}</AmountText>
     </LineWrapper>
   </Fragment>
 );
